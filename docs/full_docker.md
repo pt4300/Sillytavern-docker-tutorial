@@ -27,6 +27,41 @@
 
 ## 前置环境配置 🛠️
 
+### 安装 WSL2（Windows必需） 🐧
+
+1. 访问 [微软官方指南](https://learn.microsoft.com/zh-cn/windows/wsl/install)
+
+2. 使用自动安装方法（简单推荐）：
+    * 右键开始菜单 -> 以管理员身份运行 PowerShell
+    * 输入命令并回车：
+      ```powershell
+      wsl --install
+      ```
+    * 等待安装完成后重启电脑
+    * 重启后等 Ubuntu 自动安装完成即可
+
+3. 如果自动安装失败，请使用手动安装：(如果第2步成功无视这一步)
+    * 以管理员身份运行 PowerShell
+    * 输入下面两条命令：
+    ```powershell
+    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    ```
+    * 重启电脑
+    * 下载 [WSL2 Linux 内核更新包](https://learn.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)
+    * 安装下载的更新包
+    * 再次打开管理员 PowerShell，输入：
+    ```powershell
+    wsl --set-default-version 2
+    ```
+
+!!! warning "安装提示"
+    * 需要 Windows 10 版本 2004 及以上（Win+R 运行 winver 可查看）
+    * 全程记得开启 VPN，不然下载很慢
+    * 如果安装不顺利，先把 Windows 更新到最新版本
+
+安装 WSL2 成功后，我们就可以开始安装 Docker Desktop 啦！
+
 ### Docker Desktop 安装
 
 1. 去 [Docker Desktop 官网](https://www.docker.com/get-started/) 逛一下
