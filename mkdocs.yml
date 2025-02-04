@@ -1,5 +1,5 @@
 site_name: SERN酒馆妙妙屋
-site_url: https://sitename.example
+site_url: https://pt4300.github.io/Sillytavern-docker-tutorial/
 theme:
   name: material
   font:
@@ -47,7 +47,7 @@ markdown_extensions:
   - admonition
   - pymdownx.details
 
-#nav:
-#  - index.md
-#  - simple_docker.md
-#  - full_docker.md
+nav:
+  - index.md
+  - simple_docker.md
+  - full_docker.md
