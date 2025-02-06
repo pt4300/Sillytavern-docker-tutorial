@@ -1,0 +1,859 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://pt4300.github.io/Sillytavern-docker-tutorial/full_docker/">
+      
+      
+        <link rel="prev" href="../simple_docker/">
+      
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.2">
+    
+    
+      
+        <title>SillyTavern 酒馆完整部署教程 - 保姆级安装指南 🎮 - SERN酒馆妙妙屋</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Merriweather Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sillytavern-" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SERN酒馆妙妙屋" class="md-header__button md-logo" aria-label="SERN酒馆妙妙屋" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SERN酒馆妙妙屋
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SillyTavern 酒馆完整部署教程 - 保姆级安装指南 🎮
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SERN酒馆妙妙屋" class="md-nav__button md-logo" aria-label="SERN酒馆妙妙屋" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    SERN酒馆妙妙屋
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    欢迎来到SERN妙妙屋！让我们开启科学冒险吧~ 🌟
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simple_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SillyTavern 酒馆一键部署教程 - 零基础超友好版本，按一下就能安装！ 🎮
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SillyTavern 酒馆完整部署教程 - 保姆级安装指南 🎮
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    SillyTavern 酒馆完整部署教程 - 保姆级安装指南 🎮
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么选择 Docker 部署？🤔
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      前置环境配置 🛠️
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前置环境配置 🛠️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl2windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 WSL2（Windows必需） 🐧
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Desktop 安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git 安装
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      检查一下准备工作做得怎么样 ✅
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      开始部署我们的小酒馆！🚀
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      更新小酒馆 🔄
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      最后的小贴士 💡
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么选择 Docker 部署？🤔
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      前置环境配置 🛠️
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前置环境配置 🛠️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl2windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 WSL2（Windows必需） 🐧
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Desktop 安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git 安装
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      检查一下准备工作做得怎么样 ✅
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      开始部署我们的小酒馆！🚀
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      更新小酒馆 🔄
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      最后的小贴士 💡
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sillytavern-">SillyTavern 酒馆完整部署教程 - 保姆级安装指南 🎮</h1>
+<blockquote>
+<p>如果你是编程小白，或者只想快速部署酒馆，可以看看我们的<a href="../simple_docker/">零基础傻瓜版教程</a> - 那边只需要按回车就能装好！</p>
+<p>这个版本会详细解释每个安装步骤，适合想要了解技术细节或需要更灵活配置的朋友们。来和我一起深入了解如何搭建属于你的虚拟酒馆吧！😊</p>
+</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">开始前的必读提示</p>
+<ul>
+<li>本教程为完整版，会包含一些技术概念的解释，便于你日后维护和调试</li>
+<li>记得全程开启 VPN（除非你已经在墙外啦），因为我们需要访问 GitHub</li>
+<li>每个步骤都有详细说明，建议按顺序完成，这样出问题时也容易定位</li>
+<li>目前是 Windows 版本的教程，Mac 和 Linux 的配置会有所不同</li>
+</ul>
+</div>
+<h2 id="docker">为什么选择 Docker 部署？🤔</h2>
+<p>相比直接安装，Docker 部署有这些优势：</p>
+<ul>
+<li><strong>隔离环境</strong>：不会污染系统环境，想删除时也很干净</li>
+<li><strong>跨平台兼容</strong>：同样的部署方式适用于各种系统</li>
+<li><strong>版本管理</strong>：可以轻松切换不同版本，支持多开</li>
+<li><strong>自动运维</strong>：开机自启动，无需手动管理</li>
+<li><strong>标准化配置</strong>：避免各种环境问题导致的配置困难</li>
+</ul>
+<p>当然，也存在一些需要注意的地方：</p>
+<ul>
+<li>首次配置需要多装一个 Docker（但后面部署其他应用也能用）</li>
+<li>更新时需要注意备份（不过我们会提供完整的备份说明）</li>
+</ul>
+<h2 id="_1">前置环境配置 🛠️</h2>
+<h3 id="wsl2windows">安装 WSL2（Windows必需） 🐧</h3>
+<ol>
+<li>
+<p>访问 <a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">微软官方指南</a></p>
+</li>
+<li>
+<p>使用自动安装方法（简单推荐）：</p>
+<ul>
+<li>右键开始菜单 -&gt; 以管理员身份运行 PowerShell</li>
+<li>输入命令并回车：
+  <div class="language-powershell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span>
+</span></code></pre></div></li>
+<li>等待安装完成后重启电脑</li>
+<li>重启后等 Ubuntu 自动安装完成即可</li>
+</ul>
+</li>
+</ol>
+<details class="note">
+<summary>如果自动安装失败，请使用手动安装：(如果第2步成功无视这一步)</summary>
+<ul>
+<li>以管理员身份运行 PowerShell</li>
+<li>输入下面两条命令：
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="p">:</span><span class="n">Microsoft-Windows-Subsystem-Linux</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">dism</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">online</span> <span class="p">/</span><span class="nb">enable-feature</span> <span class="p">/</span><span class="n">featurename</span><span class="p">:</span><span class="n">VirtualMachinePlatform</span> <span class="p">/</span><span class="n">all</span> <span class="p">/</span><span class="n">norestart</span>
+</span></code></pre></div></li>
+<li>重启电脑</li>
+<li>下载 <a href="https://learn.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package">WSL2 Linux 内核更新包</a></li>
+<li>安装下载的更新包</li>
+<li>再次打开管理员 PowerShell，输入：
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-default-version</span> <span class="n">2</span>
+</span></code></pre></div></li>
+</ul>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">安装提示</p>
+<ul>
+<li>需要 Windows 10 版本 2004 及以上（Win+R 运行 winver 可查看）</li>
+<li>全程记得开启 VPN，不然下载很慢</li>
+<li>如果安装不顺利，先把 Windows 更新到最新版本</li>
+</ul>
+</div>
+<p>安装 WSL2 成功后，我们就可以开始安装 Docker Desktop 啦！</p>
+<h3 id="docker-desktop">Docker Desktop 安装</h3>
+<ol>
+<li>
+<p>去 <a href="https://www.docker.com/get-started/">Docker Desktop 官网</a> 逛一下</p>
+</li>
+<li>
+<p>点击下载按钮（就是那个显眼的蓝色按钮啦）</p>
+<p><a href="../assets/image8.png">截图位置：Docker 网站主页，红圈标注下载按钮</a></p>
+</li>
+<li>
+<p>下载完双击安装就好</p>
+</li>
+<li>
+<p>一路下一步，不用改任何东西（没错，就是这么简单！）</p>
+</li>
+<li>
+<p>最后重启一下电脑，让 Docker 安心定居在你的电脑里~</p>
+</li>
+</ol>
+<h3 id="git">Git 安装</h3>
+<ol>
+<li>
+<p>访问 <a href="https://git-scm.com/downloads/win">Git 官网</a></p>
+</li>
+<li>
+<p>点击下载按钮（Windows 版本）</p>
+<p><img alt="截图位置：Git 下载页面" src="../assets/image2.png" /></p>
+</li>
+<li>
+<p>安装的时候也是一路下一步就好啦~</p>
+</li>
+</ol>
+<h2 id="_2">检查一下准备工作做得怎么样 ✅</h2>
+<ol>
+<li>
+<p>按一下键盘左下角的 Windows 键（找不到的话...那就百度一下吧 😅）</p>
+</li>
+<li>
+<p>在搜索框输入 "cmd"，打开我们的老朋友命令提示符</p>
+<p><img alt="截图位置：搜索 cmd" src="../assets/image10.png" /></p>
+</li>
+<li>
+<p>在黑框框里输入：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git
+</span></code></pre></div>
+<p>应该能看到一大堆 Git 相关的说明：</p>
+<p><img alt="截图位置：git 命令输出" src="../assets/image5.png" /></p>
+</li>
+<li>
+<p>再输入：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker
+</span></code></pre></div>
+<p>也会看到一堆 Docker 的介绍：</p>
+<p><img alt="截图位置：docker 命令输出" src="../assets/image11.png" /></p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">小贴士</p>
+<p>如果上面哪个命令没反应，可能是安装出了小问题，重新装一下对应的软件就好啦~</p>
+</div>
+<h2 id="_3">开始部署我们的小酒馆！🚀</h2>
+<ol>
+<li>
+<p>找一个你喜欢的文件夹（用来存放酒馆）</p>
+</li>
+<li>
+<p>点击上面的地址栏，复制路径</p>
+<p><img alt="截图位置：文件夹路径复制" src="../assets/image6.png" /></p>
+</li>
+<li>
+<p>在命令提示符里输入这些命令（记得把路径换成你自己的）：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>&lt;你的文件路径&gt;
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/SillyTavern/SillyTavern.git
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">cd</span><span class="w"> </span>SillyTavern<span class="se">\d</span>ocker
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">小提示</p>
+<p>如果中途关掉了命令窗口，记得重新 cd 到正确的地方哦~
+比如：<code>cd H:\MyFolder\SillyTavern\docker</code>
+确保路径末尾是 <code>SillyTavern\docker</code></p>
+</div>
+</li>
+<li>
+<p>输入启动命令：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up
+</span></code></pre></div>
+<p>等待进度条走完就好啦~</p>
+<p>现在让我们确认一下酒馆是否部署成功：
+* 打开 Docker Desktop
+* 点击左侧的 Containers 按钮
+* 检查是否有一个名为 "sillytavern" 的容器
+* 如果看到绿色状态标记和 "Running" 状态，就说明部署成功啦！</p>
+<p><img alt="截图位置：Docker Desktop Containers 页面，显示运行中的 sillytavern 容器" src="../assets/image12.png" /></p>
+</li>
+<li>
+<p>现在需要添加允许访问的IP：</p>
+<ul>
+<li>先用浏览器访问 <code>http://localhost:8000/</code></li>
+<li>你会看到一个报错页面，里面会显示需要添加的IP地址
+  <img alt="截图位置：报错页面，标注IP地址位置" src="../assets/image13.png" /></li>
+<li>回到安装文件夹，进入 docker/config 目录</li>
+<li>找到 config.yaml 文件并打开
+  <img alt="截图位置：config.yaml修改，高亮显示添加的IP" src="../assets/image7.png" /></li>
+<li>在 whitelist 下面添加以下IP：
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">whitelist</span><span class="p">:</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">::1</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.18.0.1</span><span class="w">  </span><span class="c1"># Docker内网IP</span>
+</span></code></pre></div></li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">这些IP是什么？</p>
+<ul>
+<li>这些是本地访问需要用到的IP地址：</li>
+<li><code>::1</code> 和 <code>127.0.0.1</code> 是本机地址</li>
+<li><code>172.18.0.1</code> 是Docker内网地址</li>
+<li>如果报错页面显示了其他IP，也要一起加进去哦~</li>
+</ul>
+</div>
+</li>
+<li>
+<p>修改完配置文件后,重启容器让配置生效:</p>
+<ul>
+<li>回到 Docker Desktop</li>
+<li>找到你的酒馆容器</li>
+<li>点击右边的重启按钮(两个循环箭头的图标)或右键选择"Restart"</li>
+<li>等待容器重启完成
+<img alt="截图位置：酒馆主页" src="../assets/image19.png" /></li>
+</ul>
+</li>
+<li>
+<p>大功告成！🎉 现在再次访问 <code>http://localhost:8000/</code> 就能看到你的专属酒馆啦！</p>
+</li>
+</ol>
+<h2 id="_4">更新小酒馆 🔄</h2>
+<div class="admonition warning">
+<p class="admonition-title">更新前的叮嘱</p>
+<p>一定要记得备份！虽然一般不会出问题，但是备份一下总是好的~ 📦</p>
+</div>
+<p>更新步骤：</p>
+<ol>
+<li>
+<p>复制一份 <code>SillyTavern\docker</code> 文件夹的内容（以防万一）</p>
+</li>
+<li>
+<p>在命令提示符里输入：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>&lt;SillyTavern<span class="se">\d</span>ocker路径&gt;
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>docker<span class="w"> </span>stop<span class="w"> </span>sillytavern
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>docker<span class="w"> </span>rm<span class="w"> </span>sillytavern
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># 运行更新脚本</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>docker<span class="w"> </span>compose<span class="w"> </span>up
+</span></code></pre></div>
+</li>
+</ol>
+<h2 id="_5">最后的小贴士 💡</h2>
+<ol>
+<li>
+<p>如果要用 SD、ComfyUI 或 Ollama 之类的本地服务，记得把地址改一下：</p>
+<ul>
+<li>原来的 <code>http://127.0.0.1:xxxx</code> </li>
+<li>改成 <code>http://host.docker.internal:xxxx</code>
+xxxx 是端口号，
+为啥要改？因为我们的酒馆在 Docker 小房子里，要用特殊的方式才能和外面联系啦~</li>
+</ul>
+</li>
+<li>
+<p>你的所有重要文件（角色卡、世界书、插件等）都在 <code>SillyTavern\docker</code> 文件夹里，更新前记得备份哦！</p>
+</li>
+</ol>
+<p>好啦！现在你已经拥有了自己的小酒馆，开始愉快地玩耍吧！🎊 有问题随时问我哦~ 😊</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../simple_docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SillyTavern 酒馆一键部署教程 - 零基础超友好版本，按一下就能安装！ 🎮">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                SillyTavern 酒馆一键部署教程 - 零基础超友好版本，按一下就能安装！ 🎮
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f13b1293.min.js"></script>
+      
+    
+  </body>
+</html>
